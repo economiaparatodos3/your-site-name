@@ -446,15 +446,23 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
+                /* 👈 THIS hides it */
                 width: 85%;
-                max-width: 400px;
+                max-width: 380px;
                 height: 100%;
-                background: white;
+                background: var(--bg-card);
                 padding: 1.5rem;
                 transition: 0.35s ease;
                 z-index: 1000;
                 display: flex;
                 flex-direction: column;
+                overflow-y: auto;
+                border-left: 1px solid var(--border);
+            }
+
+            /* when active */
+            .menu-panel.active {
+                right: 0;
             }
 
             /* Active states */
@@ -536,12 +544,45 @@
             .tab-content.active {
                 display: block;
             }
+
+            .menu-btn {
+                position: fixed;
+                top: 18px;
+                right: 18px;
+                font-size: 1.4rem;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                padding: 6px 10px;
+                cursor: pointer;
+                z-index: 1100;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            }
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s;
+                z-index: 900;
+            }
+
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
         <!-- Overlay -->
         <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
@@ -673,6 +714,7 @@
     </div>
     </div>
     <script>
+
         function toggleMenu() {
             const panel = document.getElementById("menuPanel");
             const overlay = document.getElementById("menuOverlay");
@@ -695,19 +737,9 @@
             const index = Array.from(buttons).indexOf(e.currentTarget);
             indicator.style.transform = `translateX(${index * 100}%)`;
 
-            let startX = 0;
+            
 
-            document.getElementById("menuPanel").addEventListener("touchstart", e => {
-                startX = e.touches[0].clientX;
-            });
-
-            document.getElementById("menuPanel").addEventListener("touchmove", e => {
-                let currentX = e.touches[0].clientX;
-
-                if (currentX - startX > 80) {
-                    toggleMenu(); // swipe right closes
-                }
-            });
+            
         }
     </script>
 </body>
@@ -720,5 +752,21 @@
         }
     };
 </script>
+<script>
+let startX = 0;
 
+const panel = document.getElementById("menuPanel");
+
+panel.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+panel.addEventListener("touchmove", e => {
+  let currentX = e.touches[0].clientX;
+
+  if (currentX - startX > 80) {
+    toggleMenu();
+  }
+});
+</script>
 </html>
