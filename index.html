@@ -1,225 +1,791 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link rel="icon" href="logo.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Support Us — Donate</title>
+    <link rel="icon" href="logo.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Us — Donate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+        :root {
+            --gold: #c9a84c;
+            --cream: #faf6ef;
+            --ink: #1a1612;
+            --muted: #7a6e62;
+            --bg-card: #ffffff;
+            --border: rgba(201, 168, 76, 0.22);
+            --green: #2e7d52;
 
-<style>
-* {margin:0;padding:0;box-sizing:border-box;}
+            /* Instagram section */
+            .instagram-section {
+                margin-top: 2.5rem;
+            }
 
-:root {
-  --gold:#c9a84c;
-  --cream:#faf6ef;
-  --ink:#1a1612;
-  --muted:#7a6e62;
-  --bg-card:#ffffff;
-  --border:rgba(201,168,76,0.22);
-}
+            .insta-feed {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
 
-/* BODY */
-body{
-  background:var(--cream);
-  font-family:'DM Sans',sans-serif;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:2rem 1rem;
-}
+            /* Make embeds responsive */
+            .insta-feed iframe {
+                max-width: 100%;
+            }
 
-/* CONTAINER */
-.container{
-  width:100%;
-  max-width:480px;
-  text-align:center;
-}
+            /* Mobile improvements */
+            @media (max-width: 480px) {
 
-/* MENU BUTTON */
-.menu-btn{
-  position:fixed;
-  top:18px;
-  right:18px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  padding:6px 10px;
-  border-radius:10px;
-  cursor:pointer;
-  z-index:1100;
-}
+                .fw-btn {
+                    margin-bottom: 1.2rem;
+                    padding: 1.3rem 1.2rem;
+                }
 
-/* OVERLAY */
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-  opacity:0;
-  visibility:hidden;
-  transition:.3s;
-  z-index:900;
-}
-.menu-overlay.active{
-  opacity:1;
-  visibility:visible;
-}
+                .section-label {
+                    margin-top: 1.6rem;
+                    margin-bottom: 1rem;
+                }
 
-/* MENU PANEL */
-.menu-panel{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:85%;
-  max-width:380px;
-  height:100%;
-  background:white;
-  padding:1.5rem;
-  transition:.35s;
-  z-index:1000;
-  overflow:auto;
-}
-.menu-panel.active{
-  right:0;
-}
+                .instagram-section {
+                    margin-top: 2rem;
+                }
 
-/* TABS */
-.menu-tabs{
-  display:flex;
-  gap:.3rem;
-  margin-bottom:1rem;
-  position:relative;
-}
-.menu-tabs button{
-  flex:1;
-  border:none;
-  background:none;
-  font-size:.75rem;
-  cursor:pointer;
-  color:var(--muted);
-}
-.menu-tabs button.active{color:var(--ink);}
+            }
 
-.tab-indicator{
-  position:absolute;
-  bottom:0;
-  height:3px;
-  width:33%;
-  background:var(--gold);
-  transition:.3s;
-}
+            #team h2::after {
+                content: "";
+                display: block;
+                width: 40px;
+                height: 2px;
+                background: var(--gold);
+                margin: 6px 0 12px;
+            }
+        }
 
-/* TAB CONTENT */
-.tab-content{display:none;font-size:.9rem;color:var(--muted);}
-.tab-content.active{display:block;}
+        body {
+            background: var(--cream);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1rem 3rem;
+            position: relative;
+        }
 
-/* BUTTONS */
-.fw-btn{
-  width:100%;
-  background:#1a1612;
-  color:white;
-  padding:1.2rem;
-  border-radius:14px;
-  margin-top:1rem;
-  display:flex;
-  justify-content:space-between;
-  text-decoration:none;
-}
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 15% 10%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 70% at 85% 90%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
 
-/* INSTAGRAM */
-.instagram-section{margin-top:2rem;}
-.insta-feed iframe{max-width:100%;}
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
 
-/* FOOTER */
-.footer{
-  margin-top:2rem;
-  font-size:.7rem;
-  color:var(--muted);
-}
-</style>
+        .header {
+            animation: up 0.7s ease both;
+        }
+
+        .symbol {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+        }
+
+        .subtitle {
+            margin-top: 0.6rem;
+            font-size: 0.92rem;
+            color: var(--muted);
+            font-weight: 300;
+            line-height: 1.65;
+        }
+
+        .divider {
+            width: 44px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1.8rem auto;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.9rem;
+        }
+
+        .anim-1 {
+            animation: up 0.7s 0.1s ease both;
+            opacity: 0;
+        }
+
+        .anim-2 {
+            animation: up 0.7s 0.2s ease both;
+            opacity: 0;
+        }
+
+        .anim-3 {
+            animation: up 0.7s 0.35s ease both;
+            opacity: 0;
+        }
+
+        .anim-4 {
+            animation: up 0.7s 0.48s ease both;
+            opacity: 0;
+        }
+
+        /* Flutterwave button */
+        .fw-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1.2rem 1.4rem;
+            background: var(--ink);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .fw-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(26, 22, 18, 0.2);
+
+        }
+
+        .fw-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .fw-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f5a623, #f97316);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .fw-text-top {
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 0.2rem;
+        }
+
+        .fw-text-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .fw-logos {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .visa-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .mc-wrap {
+            display: flex;
+            align-items: center;
+        }
+
+        .mc-c {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .mc-c.r {
+            background: #eb001b;
+        }
+
+        .mc-c.y {
+            background: #f79e1b;
+            margin-left: -5px;
+        }
+
+        /* Local section */
+        .local-section {
+            margin-top: 1.5rem;
+        }
+
+        .local-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.9rem;
+        }
+
+        .local-card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 1.3rem 1.1rem 1.1rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .local-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.12);
+        }
+
+        .local-card-top {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .local-emoji {
+            font-size: 1.2rem;
+        }
+
+        .local-badge {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .local-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .local-value {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--ink);
+            background: rgba(201, 168, 76, 0.09);
+            border-radius: 6px;
+            padding: 0.38rem 0.55rem;
+            letter-spacing: 0.03em;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 0.32rem 0.65rem;
+            font-size: 0.71rem;
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+            align-self: flex-start;
+        }
+
+        .copy-btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+        }
+
+        .copy-btn.copied {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.73rem;
+            color: var(--muted);
+            opacity: 0.6;
+        }
+
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 2rem 1.2rem 2.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.85rem;
+                line-height: 1.7;
+                margin-top: 0.8rem;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            /* More space between sections */
+            .section-label {
+                margin-top: 1.6rem;
+                margin-bottom: 1rem;
+            }
+
+            /* BUTTON IMPROVEMENTS */
+            .fw-btn {
+                padding: 1.3rem 1.2rem;
+                border-radius: 16px;
+                margin-bottom: 1.2rem;
+            }
+
+            .fw-text-main {
+                font-size: 1.15rem;
+            }
+
+            .fw-text-top {
+                font-size: 0.65rem;
+            }
+
+            .fw-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+            }
+
+            /* Add breathing room between button groups */
+            .local-section {
+                margin-top: 2rem;
+            }
+
+            /* Footer spacing */
+            .footer {
+                margin-top: 2.5rem;
+                font-size: 0.7rem;
+            }
+
+            /* Overlay */
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s;
+                z-index: 900;
+            }
+
+            /* Slide panel */
+            .menu-panel {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                /* 👈 THIS hides it */
+                width: 85%;
+                max-width: 380px;
+                height: 100%;
+                background: var(--bg-card);
+                padding: 1.5rem;
+                transition: 0.35s ease;
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                border-left: 1px solid var(--border);
+            }
+
+            /* when active */
+            .menu-panel.active {
+                right: 0;
+            }
+
+            /* Active states */
+            .menu-panel.active {
+                right: 0;
+            }
+
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* Tabs */
+            .menu-tabs {
+                display: flex;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .menu-tabs button {
+                flex: 1;
+                padding: 0.5rem;
+                border: none;
+                background: #eee;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 0.8rem;
+            }
+
+            .menu-tabs button.active {
+                background: var(--gold);
+                color: white;
+            }
+
+            .menu-tabs {
+                position: relative;
+                display: flex;
+                gap: 0.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .menu-tabs button {
+                flex: 1;
+                padding: 0.6rem;
+                border: none;
+                background: transparent;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 0.75rem;
+                color: var(--muted);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+            }
+
+            .menu-tabs button.active {
+                color: var(--ink);
+            }
+
+            /* Animated underline */
+            .tab-indicator {
+                position: absolute;
+                bottom: 0;
+                height: 3px;
+                width: 33.33%;
+                background: var(--gold);
+                border-radius: 2px;
+                transition: transform 0.3s ease;
+            }
+
+            /* Content */
+            .tab-content {
+                display: none;
+                font-size: 0.9rem;
+                color: var(--muted);
+            }
+
+            .tab-content.active {
+                display: block;
+            }
+
+            .menu-btn {
+                position: fixed;
+                top: 18px;
+                right: 18px;
+                font-size: 1.4rem;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                padding: 6px 10px;
+                cursor: pointer;
+                z-index: 1100;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            }
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s;
+                z-index: 900;
+            }
+
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+        <!-- Overlay -->
+        <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+        <!-- Sliding Menu -->
+        <div class="menu-panel" id="menuPanel">
 
-<div class="menu-panel" id="menuPanel">
+            <!-- Tabs -->
+            <div class="menu-tabs">
+                <button onclick="showTab(event, 'about')" class="active">
+                    📘 <span>Sobre</span>
+                </button>
+                <button onclick="showTab(event, 'mission')">
+                    🎯 <span>Missão</span>
+                </button>
+                <button onclick="showTab(event, 'team')">
+                    👥 <span>Equipa</span>
+                </button>
 
-<div class="menu-tabs">
-<button onclick="showTab(event,'about')" class="active">📘 Sobre</button>
-<button onclick="showTab(event,'mission')">🎯 Missão</button>
-<button onclick="showTab(event,'team')">👥 Equipa</button>
-<div class="tab-indicator"></div>
-</div>
+                <div class="tab-indicator"></div>
+            </div>
 
-<div class="tab-content active" id="about">
-<h2>Sobre Nós</h2>
-<p><strong>Economia para Todos</strong> é uma campanha de angariação de fundos organizada por estudantes angolanos participantes nas IEO.</p>
-</div>
+            <!-- Content -->
+            <div class="menu-content">
 
-<div class="tab-content" id="mission">
-<h2>Missão</h2>
-<p>Arrecadar fundos para cobrir despesas da viagem à China.</p>
-</div>
+                <!-- ABOUT -->
+                <div class="tab-content active" id="about">
+                    <h2>Sobre Nós</h2>
+                    <p>
+                        <strong>Economia para Todos</strong> é uma iniciativa criada por estudantes angolanos que
+                        participam nas IEO (International Economics Olympiad).
+                    </p>
+                    <br>
+                    <p>
+                        Este projeto nasceu de uma ideia simples: transformar talento académico em oportunidade real.
+                        Não somos uma organização grande — somos estudantes a tentar chegar mais longe com esforço,
+                        criatividade e união.
+                    </p>
+                    <br>
+                    <p>
+                        Este site existe para uma única coisa: tornar possível a nossa participação na competição
+                        internacional na China.
+                    </p>
+                </div>
 
-<div class="tab-content" id="team">
-<h2>Equipa</h2>
-<p>Somos estudantes unidos por uma missão coletiva.</p>
-</div>
+                <div class="tab-content" id="mission">
+                    <h2>Missão</h2>
+                    <p>
+                        A nossa missão não é apenas viajar — é representar Angola num palco internacional de economia e
+                        resolução de problemas.
+                    </p>
+                    <br>
+                    <p>
+                        Os fundos arrecadados serão usados para:
+                    </p>
+                    <ul style="text-align:left; margin-top:10px; padding-left:18px;">
+                        <li>✈️ Passagens aéreas para a China</li>
+                        <li>🏨 Alojamento durante a competição</li>
+                        <li>📚 Material de preparação e estudo</li>
+                        <li>🧾 Taxas de participação e inscrição</li>
+                    </ul>
+                    <br>
+                    <p>
+                        Cada contribuição, pequena ou grande, é uma peça que constrói esta viagem.
+                    </p>
+                </div>
 
-</div>
+                <div class="tab-content" id="team">
+                    <h2>Equipa</h2>
+                    <p>
+                        Somos um grupo de estudantes com diferentes origens, mas com o mesmo objetivo: crescer através
+                        da economia e da aprendizagem global.
+                    </p>
+                    <br>
+                    <p>
+                        Trabalhamos juntos fora da sala de aula, preparando provas, simulando competições e
+                        desenvolvendo pensamento crítico.
+                    </p>
+                    <br>
+                    <p>
+                        Não somos perfeitos — mas somos consistentes. E isso já nos trouxe até aqui.
+                    </p>
+                </div>
+                <a href="https://www.instagram.com/economia.paratodos3?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    target="_blank">
+                    Ver Instagram →
+                </a>
+            </div>
+        </div>
 
-<div class="container">
+        <!-- International -->
+        <p class="section-label anim-1">International Card</p>
 
-<a class="fw-btn" href="https://donorbox.org/economia-para-todos" target="_blank">
-<span>💳 Donate with Card</span>
-<span>VISA</span>
-</a>
 
-<a class="fw-btn" href="https://financivo.app/campaigns/show/economia-para-todos" target="_blank">
-<span>📱 Multicaixa</span>
-<span>AO</span>
-</a>
+        <a class="fw-btn anim-2" href="https://donorbox.org/economia-para-todos" target="_blank" rel="noopener">
+            <div class="fw-left">
+                <div class="fw-icon">💳</div>
+                <div>
+                    <div class="fw-text-top">Pay securely</div>
+                    <div class="fw-text-main">Donate with Card</div>
+                </div>
+            </div>
+            <div class="fw-logos">
+                <span class="visa-text">VISA</span>
+                <div class="mc-wrap">
+                    <span class="mc-c r"></span>
+                    <span class="mc-c y"></span>
+                </div>
+            </div>
+        </a>
 
-<div class="instagram-section">
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXFoWM2Doce/" data-instgrm-version="14"></blockquote>
-</div>
+        <!-- Local -->
+        <a class="fw-btn anim-3" href="https://financivo.app/campaigns/show/economia-para-todos" target="_blank">
+            <div class="fw-left">
+                <div class="fw-icon">📱</div>
+                <div>
+                    <div class="fw-text-top">For Angola</div>
+                    <div class="fw-text-main">Pay with Multicaixa Express</div>
+                </div>
+            </div>
+            <div class="fw-logos">
+                <span class="visa-text">Financi</span>
+            </div>
+        </a>
 
-<p class="footer">Secure · Thank you</p>
+        <p class="footer anim-4">Secure &nbsp;·&nbsp; Thank you for your generosity</p>
+        <!-- Instagram Section -->
+        <div class="instagram-section anim-4">
+            <p class="section-label">Latest from Instagram</p>
 
-</div>
+            <div class="insta-feed">
 
-<script>
-function toggleMenu(){
-  document.getElementById("menuPanel").classList.toggle("active");
-  document.getElementById("menuOverlay").classList.toggle("active");
-}
+                <!-- Replace links below with your real Instagram post links -->
 
-function showTab(e,id){
-  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
-  document.querySelectorAll(".menu-tabs button").forEach(b=>b.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  e.currentTarget.classList.add("active");
-}
-</script>
+                <blockquote class="instagram-media"
+                    data-instgrm-permalink="https://www.instagram.com/reel/DXFoWM2Doce/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                    data-instgrm-version="14"></blockquote>
 
+                <blockquote class="instagram-media"
+                    data-instgrm-permalink="https://www.instagram.com/p/DXKCANtDGMu/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                    data-instgrm-version="14"></blockquote>
+
+                <blockquote class="instagram-media"
+                    data-instgrm-permalink="https://www.instagram.com/p/DWz6Xj2CNgY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                    data-instgrm-version="14"></blockquote>
+
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function toggleMenu() {
+            const panel = document.getElementById("menuPanel");
+            const overlay = document.getElementById("menuOverlay");
+
+            panel.classList.toggle("active");
+            overlay.classList.toggle("active");
+        }
+
+        function showTab(e, tabId) {
+            const tabs = document.querySelectorAll(".tab-content");
+            const buttons = document.querySelectorAll(".menu-tabs button");
+            const indicator = document.querySelector(".tab-indicator");
+
+            tabs.forEach(tab => tab.classList.remove("active"));
+            buttons.forEach(btn => btn.classList.remove("active"));
+
+            document.getElementById(tabId).classList.add("active");
+            e.currentTarget.classList.add("active");
+
+            const index = Array.from(buttons).indexOf(e.currentTarget);
+            indicator.style.transform = `translateX(${index * 100}%)`;
+
+
+
+
+        }
+    </script>
+</body>
 <script async src="https://www.instagram.com/embed.js"></script>
 
 <script>
-let startX=0;
-const panel=document.getElementById("menuPanel");
+    window.onload = function () {
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
+    };
+</script>
+<script>
+    let startX = 0;
 
-panel.addEventListener("touchstart",e=>{
-  startX=e.touches[0].clientX;
-});
+    const panel = document.getElementById("menuPanel");
 
-panel.addEventListener("touchmove",e=>{
-  if(e.touches[0].clientX-startX>80){
-    toggleMenu();
-  }
-});
+    panel.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+
+    panel.addEventListener("touchmove", e => {
+        let currentX = e.touches[0].clientX;
+
+        if (currentX - startX > 80) {
+            toggleMenu();
+        }
+    });
 </script>
 
-</body>
 </html>
