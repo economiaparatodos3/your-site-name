@@ -6,10 +6,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support Us — Donate</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     *,
     *::before,
@@ -27,42 +27,6 @@
       --bg-card: #ffffff;
       --border: rgba(201, 168, 76, 0.22);
       --green: #2e7d52;
-
-      /* Instagram section */
-      .instagram-section {
-        margin-top: 2.5rem;
-      }
-
-      .insta-feed {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-      }
-
-      /* Make embeds responsive */
-      .insta-feed iframe {
-        max-width: 100%;
-      }
-
-      /* Mobile improvements */
-      @media (max-width: 480px) {
-
-        .fw-btn {
-          margin-bottom: 1.2rem;
-          padding: 1.3rem 1.2rem;
-        }
-
-        .section-label {
-          margin-top: 1.6rem;
-          margin-bottom: 1rem;
-        }
-
-        .instagram-section {
-          margin-top: 2rem;
-        }
-
-      }
     }
 
     body {
@@ -73,7 +37,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 2.5rem 1rem 3rem;
       position: relative;
     }
@@ -83,44 +46,66 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 50% at 15% 10%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 70% at 85% 90%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 50% at 15% 10%, rgba(201, 168, 76, 0.08), transparent 60%),
+        radial-gradient(ellipse 50% 70% at 85% 90%, rgba(201, 168, 76, 0.06), transparent 60%);
       pointer-events: none;
     }
 
     .container {
-      position: relative;
       width: 100%;
       max-width: 480px;
       text-align: center;
+      position: relative;
     }
 
-    .header {
-      animation: up 0.7s ease both;
+    /* MENU */
+    .menu-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 1100;
     }
 
+    .menu-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 380px;
+      height: 100%;
+      background: white;
+      padding: 1.5rem;
+      transition: .35s;
+      z-index: 1000;
+      overflow: auto;
+    }
+
+    .menu-panel.active {
+      right: 0;
+    }
+
+    /* HEADER */
     .symbol {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.6rem;
       color: var(--gold);
-      line-height: 1;
-      margin-bottom: 0.5rem;
     }
 
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.4rem;
       font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
     }
 
     .subtitle {
-      margin-top: 0.6rem;
-      font-size: 0.92rem;
+      margin-top: .6rem;
+      font-size: .92rem;
       color: var(--muted);
-      font-weight: 300;
-      line-height: 1.65;
     }
 
     .divider {
@@ -131,402 +116,107 @@
     }
 
     .section-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
+      font-size: .72rem;
       text-transform: uppercase;
+      letter-spacing: .12em;
       color: var(--muted);
-      margin-bottom: 0.9rem;
+      margin: 1rem 0;
     }
 
-    .anim-1 {
-      animation: up 0.7s 0.1s ease both;
-      opacity: 0;
-    }
-
-    .anim-2 {
-      animation: up 0.7s 0.2s ease both;
-      opacity: 0;
-    }
-
-    .anim-3 {
-      animation: up 0.7s 0.35s ease both;
-      opacity: 0;
-    }
-
-    .anim-4 {
-      animation: up 0.7s 0.48s ease both;
-      opacity: 0;
-    }
-
-    /* Flutterwave button */
+    /* BUTTONS */
     .fw-btn {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 1.2rem 1.4rem;
+      padding: 1.2rem;
       background: var(--ink);
+      color: white;
       border-radius: 14px;
       text-decoration: none;
-      color: #fff;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
       margin-bottom: 1rem;
     }
 
     .fw-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(26, 22, 18, 0.2);
-
     }
 
-    .fw-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    /* INSTAGRAM FIXED OUTSIDE ROOT */
+    .instagram-section {
+      margin-top: 2.5rem;
     }
 
-    .fw-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #f5a623, #f97316);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .fw-text-top {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.45);
-      margin-bottom: 0.2rem;
-    }
-
-    .fw-text-main {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .fw-logos {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 5px;
-    }
-
-    .visa-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .mc-wrap {
-      display: flex;
-      align-items: center;
-    }
-
-    .mc-c {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-    }
-
-    .mc-c.r {
-      background: #eb001b;
-    }
-
-    .mc-c.y {
-      background: #f79e1b;
-      margin-left: -5px;
-    }
-
-    /* Local section */
-    .local-section {
-      margin-top: 1.5rem;
-    }
-
-    .local-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.9rem;
-    }
-
-    .local-card {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 1.3rem 1.1rem 1.1rem;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .local-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.12);
-    }
-
-    .local-card-top {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .local-emoji {
-      font-size: 1.2rem;
-    }
-
-    .local-badge {
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .local-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .local-value {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--ink);
-      background: rgba(201, 168, 76, 0.09);
-      border-radius: 6px;
-      padding: 0.38rem 0.55rem;
-      letter-spacing: 0.03em;
-      word-break: break-all;
-    }
-
-    .copy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 0.32rem 0.65rem;
-      font-size: 0.71rem;
-      font-weight: 500;
-      color: var(--muted);
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: background 0.18s, color 0.18s, border-color 0.18s;
-      align-self: flex-start;
-    }
-
-    .copy-btn:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #fff;
-    }
-
-    .copy-btn.copied {
-      background: var(--green);
-      border-color: var(--green);
-      color: #fff;
+    .insta-feed iframe {
+      max-width: 100%;
     }
 
     .footer {
       margin-top: 2rem;
-      font-size: 0.73rem;
+      font-size: .73rem;
       color: var(--muted);
-      opacity: 0.6;
-    }
-
-    @keyframes up {
-      from {
-        opacity: 0;
-        transform: translateY(22px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 480px) {
-
-      body {
-        padding: 2rem 1.2rem 2.5rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .subtitle {
-        font-size: 0.85rem;
-        line-height: 1.7;
-        margin-top: 0.8rem;
-      }
-
-      .container {
-        max-width: 100%;
-      }
-
-      /* More space between sections */
-      .section-label {
-        margin-top: 1.6rem;
-        margin-bottom: 1rem;
-      }
-
-      /* BUTTON IMPROVEMENTS */
-      .fw-btn {
-        padding: 1.3rem 1.2rem;
-        border-radius: 16px;
-        margin-bottom: 1.2rem;
-      }
-
-      .fw-text-main {
-        font-size: 1.15rem;
-      }
-
-      .fw-text-top {
-        font-size: 0.65rem;
-      }
-
-      .fw-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 1.2rem;
-      }
-
-      /* Add breathing room between button groups */
-      .local-section {
-        margin-top: 2rem;
-      }
-
-      /* Footer spacing */
-      .footer {
-        margin-top: 2.5rem;
-        font-size: 0.7rem;
-      }
+      opacity: .7;
     }
   </style>
 </head>
 
 <body>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <!-- MENU (FIXED POSITION) -->
+  <div class="menu-panel" id="menuPanel">
+    <h2>About Us</h2>
+    <p>
+      Economia Para Todos is a student-led initiative focused on financial education in Angola.
+    </p>
+    <br>
+    <p>
+      Donations support learning materials, workshops, and participation in international competitions.
+    </p>
+    <br>
+    <a href="https://instagram.com" target="_blank">Visit Instagram →</a>
+  </div>
+
   <div class="container">
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-    <!-- Header -->
-    <div class="header">
-      <div class="symbol">♡</div>
-      <!-- ↓ Replace with your group or project name -->
-      <h1>Economia Para Todos</h1>
-      <p class="subtitle">Choose how you'd like to contribute.<br>Every donation makes an impact.</p>
-      <div class="divider"></div>
-      <div class="menu-panel" id="menuPanel">
-  <h2>About Us</h2>
-  
-  <p>
-    Economia Para Todos is a project focused on bringing financial education
-    to young people in Angola. We believe knowledge should be accessible to everyone.
-  </p>
+    <div class="symbol">♡</div>
+    <h1>Economia Para Todos</h1>
+    <p class="subtitle">Choose how you'd like to contribute. Every donation makes an impact.</p>
 
-  <p>
-    Your donations help us create educational content, workshops,
-    and tools that empower our community.
-  </p>
+    <div class="divider"></div>
 
-  <a href="https://www.instagram.com/YOURPAGE" target="_blank">
-    Visit our Instagram →
-  </a>
-</div>
-    </div>
+    <p class="section-label">International Card</p>
 
-    <!-- International -->
-    <p class="section-label anim-1">International Card</p>
-
-    
-    <a class="fw-btn anim-2" href="https://donorbox.org/economia-para-todos" target="_blank" rel="noopener">
-      <div class="fw-left">
-        <div class="fw-icon">💳</div>
-        <div>
-          <div class="fw-text-top">Pay securely</div>
-          <div class="fw-text-main">Donate with Card</div>
-        </div>
-      </div>
-      <div class="fw-logos">
-        <span class="visa-text">VISA</span>
-        <div class="mc-wrap">
-          <span class="mc-c r"></span>
-          <span class="mc-c y"></span>
-        </div>
-      </div>
+    <a class="fw-btn" href="https://donorbox.org/economia-para-todos">
+      <span>💳 Donate with Card</span>
+      <span>VISA</span>
     </a>
 
-    <!-- Local -->
-    <a class="fw-btn anim-3" href="https://financivo.app/campaigns/show/economia-para-todos" target="_blank">
-      <div class="fw-left">
-        <div class="fw-icon">📱</div>
-        <div>
-          <div class="fw-text-top">For Angola</div>
-          <div class="fw-text-main">Pay with Multicaixa Express</div>
-        </div>
-      </div>
-      <div class="fw-logos">
-        <span class="visa-text">Financi</span>
-      </div>
+    <p class="section-label">Local Payment</p>
+
+    <a class="fw-btn" href="https://financivo.app/campaigns/show/economia-para-todos">
+      <span>📱 Multicaixa Express</span>
+      <span>AO</span>
     </a>
 
-    <p class="footer anim-4">Secure &nbsp;·&nbsp; Thank you for your generosity</p>
-    <!-- Instagram Section -->
-    <div class="instagram-section anim-4">
+    <p class="footer">Secure · Thank you for your generosity</p>
+
+    <div class="instagram-section">
       <p class="section-label">Latest from Instagram</p>
 
-      <div class="insta-feed">
-
-        <!-- Replace links below with your real Instagram post links -->
-
-        <blockquote class="instagram-media"
-          data-instgrm-permalink="https://www.instagram.com/reel/DXFoWM2Doce/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14"></blockquote>
-
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXKCANtDGMu/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14"></blockquote>
-
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWz6Xj2CNgY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" data-instgrm-version="14"></blockquote> 
-
-      </div>
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/DXFoWM2Doce/"
+        data-instgrm-version="14"></blockquote>
     </div>
+
   </div>
+
   <script>
-    function copyVal(id, btn, label) {
-      const text = document.getElementById(id).innerText.trim();
-      navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = '✓ Copied!';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = '⧉ Copy ' + label;
-          btn.classList.remove('copied');
-        }, 2000);
-      });
+    function toggleMenu() {
+      document.getElementById("menuPanel").classList.toggle("active");
     }
   </script>
-</body> 
-<script async src="https://www.instagram.com/embed.js"></script>
 
-<script>
-  window.onload = function () {
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-    }
-  };
-</script>
+  <script async src="https://www.instagram.com/embed.js"></script>
 
+</body>
 </html>
